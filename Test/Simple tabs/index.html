@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tabs</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            height: fit-content;
+            border: solid black;
+            border-radius: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: auto;
+            margin-top: 20px;
+            align-items: center;
+        }
+        ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: large;
+            opacity: 50%;
+            padding: 10px;
+        }
+        .active-tab {
+            border-bottom: 2px solid black;
+            opacity: 1;
+        }
+        .main_content{
+            padding: 10px;
+            height: fit-content;
+        }
+        .main_content .content {
+            display: none;
+            border: solid black;
+            border-radius: 10px;
+            color: white;
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+        }
+        .main_content .content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <nav>
+            <ul>
+                <li><a href="#first_tab" class="tab">First Tab</a></li>
+                <li><a href="#second_tab" class="tab">Second Tab</a></li>
+                <li><a href="#third_tab" class="tab">Third Tab</a></li>
+                <li><a href="#fourth_tab" class="tab">Fourth Tab</a></li>
+            </ul>
+        </nav>
+        <div class="main_content">
+            <div id="first_tab" class="content active">The girl in the graveyard is your best friend, so you take her home. The night is a bruise between you, a blotch of rogue in the passenger window; the colour of fruit left out to fester. The body pries at her seatbelt, a finger, then two. The radio echoes static, the body shuffles in her seat. You study the face; the similar slice of jaw, the nose humped from where a baseball had hit her at twelve, just slightly off centre. The skin like a rain-licked plastic bag. The stink of musk and sulphur. You want to look away but you cannot. She's so ...</div>
+            <div id="second_tab" class="content">She first heard it while she was making coffee.The morning was already off to a rough start. Rachel had woken up, lazy and languid in the wake of her twice-snoozed alarm, and reached for her husband’s side of the bed. Much to her disgruntlement, the spot where he should have been was empty and cold. She glared at the empty space for a moment, then promptly snoozed her alarm again out of spite. One of the downsides of working from home was she missed out on good morning kisses as Mark got ready for his morning commute. The upside, however, wa...</div>
+            <div id="third_tab" class="content">The elderly lady shuffled the few remaining steps to the park bench and sat down, happy to catch her breath and rest for a moment. The autumn sunshine was warm, but the nip in the air made her glad of her warm coat. She placed her handbag neatly on her knee.“Good morning,” said the silver-haired gentleman at the other end of the bench. “Beautiful day.”Elsie smiled. “Yes, it is. Cold, but lovely.”The man folded his newspaper and returned the smile. “I'm George.”“Hello, George. I'm Elsie.” She re-arranged her scarf, her gnarled fingers struggl...</div>
+            <div id="fourth_tab" class="content">With the mission running long and no exfil in sight, there’s little for Valerian and Roman to do besides purchase too many groceries, hole up in the safehouse, and settle old bets. Val stands over the cracked electric stove, carefully stirring a pot of ukha. The delicate scent of herbs, spices, and freshwater fish spirals off the surface of the broth. It smells of home, and Val knows without looking that Roman is sprawled on the couch behind him. “Just be careful not to let the salmon overcook,” Roman calls out. What would be genuine advice ...</div>
+        </div>
+    </main>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault(); // Ngăn chuyển hướng
+
+                // Xóa lớp active từ tất cả các tab và nội dung
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active-tab'));
+                document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+
+                // Thêm lớp active vào tab được click
+                tab.classList.add('active-tab');
+
+                // Hiển thị nội dung phù hợp
+                const contentId = tab.getAttribute('href').substring(1); // Lấy ID từ href của tab
+                document.getElementById(contentId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
